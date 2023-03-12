@@ -1,18 +1,29 @@
 # import main Flask class and request object
 from flask import Flask, request
 from generation_request import GenerationRequest
-from gen_oobabooga import OobaboogaGenerator
+import argparse
 
-# create the Flask app
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--generator', type=str, required=True,
+                    help="Generator. Either 'oobabooga', 'llama.cpp'")
+args = parser.parse_args()
+if args.generator == "oobabooga":
+    from gen_oobabooga import OobaboogaGenerator
+    gen = OobaboogaGenerator()
+elif args.generator == "llama.cpp":
+    from gen_llamacpp import LlamaCppGenerator
+    gen = LlamaCppGenerator()
+else:
+    raise Exception(f"Unexpected parser {args.parser}")
+
 app = Flask(__name__)
-
-gen = OobaboogaGenerator()
 
 
 @app.route('/api/v1/model')
 def model_name():
-    #result = {'result': 'facebook/opt-125m'}
-    #print("Model name quieried")
+    # result = {'result': 'facebook/opt-125m'}
+    # print("Model name quieried")
     result = {'result': 'hoperator/oobabooga'}
     return result
     # return 'JSON Object Example'
