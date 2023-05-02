@@ -1,3 +1,8 @@
+NOTE: Oobabooga supports kobold api and llama natively now.
+
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+
 Hoperator:
 
 Hoperator is a primitive server which emulates enough of Kobold API
